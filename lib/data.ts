@@ -6,10 +6,21 @@ export type MiscType = 'learning' | 'upcoming' | 'goal' | 'personal' | 'other';
 export type ChartType = 'line' | 'bar' | 'before-after';
 export type FeatureType = 'OPS' | 'IRQ' | 'SAP' | 'TPRM';
 
-export interface CodeActivity {
-  date: string; // "YYYY-MM-DD"
-  count: number;
-  level: 0 | 1 | 2 | 3 | 4;
+export type InnovationCategory =
+  | 'Tech'
+  | 'Business Logic'
+  | 'Process'
+  | 'Other';
+export type InnovationStatus = 'Implemented' | 'Planned' | 'Proposed';
+
+export interface InnovationIdea {
+  id: string;
+  title: string;
+  description: string;
+  category: InnovationCategory;
+  status: InnovationStatus;
+  date?: string; // "YYYY-MM"
+  impact?: string;
 }
 
 export interface ChartDataPoint {
@@ -119,6 +130,8 @@ export interface ProfileMetrics {
 export interface BragData {
   name: string;
   role: string;
+  profileImage?: string;
+  organizationName?: string;
   team?: string;
   period: string;
   years: string[];
@@ -129,12 +142,14 @@ export interface BragData {
   badges: Badge[];
   certifications: Certification[];
   misc: MiscItem[];
-  codeActivity: CodeActivity[];
+  innovationFocus: InnovationIdea[];
 }
 
 export const BRAG_DATA: BragData = {
   name: 'Anagha Yawale',
   role: 'Packaged App Development Associate',
+  profileImage: '/anagha/display-picture.jpg', // Option to add a profile image URL here
+  organizationName: 'Accenture Solutions Private Limited',
   team: 'Supplier Platform-Sustainability',
   period: 'July 2024 – Current',
   years: ['2026', '2025', '2024'],
@@ -575,37 +590,38 @@ export const BRAG_DATA: BragData = {
       icon: '🦀',
     },
   ],
-  codeActivity: (() => {
-    const acts: Array<{
-      date: string;
-      count: number;
-      level: 0 | 1 | 2 | 3 | 4;
-    }> = [];
-    const end = new Date('2024-12-31');
-    const peaks: Record<string, number> = {
-      '2023-03': 3,
-      '2023-06': 4,
-      '2023-09': 3,
-      '2023-11': 4,
-      '2024-02': 4,
-      '2024-04': 4,
-      '2024-06': 3,
-      '2024-08': 3,
-      '2024-10': 4,
-    };
-    for (let d = new Date('2023-01-01'); d <= end; d.setDate(d.getDate() + 1)) {
-      const iso = d.toISOString().slice(0, 10);
-      const ym = iso.slice(0, 7);
-      const base = peaks[ym] ?? 2;
-      const weekend = d.getDay() === 0 || d.getDay() === 6;
-      const count = weekend
-        ? Math.max(0, Math.floor(Math.random() * 2))
-        : base + Math.floor(Math.random() * 3);
-      const level = (
-        count === 0 ? 0 : count <= 2 ? 1 : count <= 4 ? 2 : count <= 6 ? 3 : 4
-      ) as 0 | 1 | 2 | 3 | 4;
-      acts.push({ date: iso, count, level });
-    }
-    return acts;
-  })(),
+  innovationFocus: [
+    {
+      id: 'i1',
+      title: 'Auto Formatting - Prettier + Husky',
+      description:
+        'Integrate Prettier with Husky to automate code formatting entirely. Ensures consistent style across services with zero risk, eliminating unnecessary back-and-forth during code reviews.',
+      category: 'Process',
+      status: 'Proposed',
+    },
+    {
+      id: 'i2',
+      title: 'Modernizing Linting - TSLint to ESLint',
+      description:
+        'Migrating from deprecated TSLint (since 2019) to a standardized ESLint setup across all services. Provides modern tooling, better IDE support, and catches potential bugs earlier.',
+      category: 'Tech',
+      status: 'Proposed',
+    },
+    {
+      id: 'i3',
+      title: 'Environment-Based Conditional Code',
+      description:
+        'Introduce environment variables (e.g., node_env) to conditionally run or mock code locally. Solved the problem of a hectic local development setup where code had to be manually commented out, saving development time and simplifying onboarding for new hires.',
+      category: 'Process',
+      status: 'Proposed',
+    },
+    {
+      id: 'i4',
+      title: 'Automate Shared Library Deployment',
+      description:
+        'Automate the process of updating shared library package versions across all Fargate and queue repositories and running deployments. Replaces a time-consuming manual process.',
+      category: 'Process',
+      status: 'Proposed',
+    },
+  ],
 };

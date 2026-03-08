@@ -58,10 +58,18 @@ export default async function ReportPage() {
               </div>
               <div className="p-4 bg-muted/50 rounded-lg text-center">
                 <p className="text-3xl font-mono font-bold text-foreground print:text-black">
-                  {data.metrics.prsMerged}
+                  {data.certifications.length}
                 </p>
                 <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">
-                  PRs Merged
+                  Certifications
+                </p>
+              </div>
+              <div className="p-4 bg-muted/50 rounded-lg text-center">
+                <p className="text-3xl font-mono font-bold text-foreground print:text-black">
+                  {data.skills.reduce((acc, skill) => acc + skill.level, 0)}
+                </p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">
+                  Total Skill Stars
                 </p>
               </div>
               <div className="p-4 bg-muted/50 rounded-lg text-center">
@@ -127,9 +135,72 @@ export default async function ReportPage() {
             </div>
           </section>
 
+          {/* Badges */}
+          {data.badges.length > 0 && (
+            <section className="mb-12 page-break-inside-avoid">
+              <h2 className="text-2xl font-bold mb-6 text-foreground print:text-black border-b border-border pb-2">
+                Badges
+              </h2>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                {data.badges.map((b) => (
+                  <div
+                    key={b.id}
+                    className="text-center flex flex-col items-center"
+                  >
+                    {b.imageUrl ? (
+                      <img
+                        src={b.imageUrl}
+                        alt={b.title}
+                        className="mb-3 object-contain"
+                        style={{
+                          width: b.imageWidth || 100,
+                          height: b.imageHeight || 100,
+                        }}
+                      />
+                    ) : (
+                      <div
+                        className="w-[100px] h-[100px] flex items-center justify-center rounded-lg text-4xl mb-3"
+                        style={{ backgroundColor: b.color + '20' }}
+                      >
+                        {b.icon}
+                      </div>
+                    )}
+                    <h3 className="text-sm font-semibold text-foreground print:text-black">
+                      {b.title}
+                    </h3>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Certifications */}
+          {data.certifications.length > 0 && (
+            <section className="mb-12 page-break-inside-avoid">
+              <h2 className="text-2xl font-bold mb-6 text-foreground print:text-black border-b border-border pb-2">
+                Certifications
+              </h2>
+              <div className="space-y-4">
+                {data.certifications.map((c) => (
+                  <div key={c.id} className="flex gap-4 items-center">
+                    <span className="text-2xl">{c.icon || '🏅'}</span>
+                    <div>
+                      <h3 className="font-semibold text-foreground print:text-black leading-tight">
+                        {c.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        {c.issuer} {c.issuedOn ? `· Issued ${c.issuedOn}` : ''}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
           {/* Endorsements / Testimonials */}
           {data.testimonials.length > 0 && (
-            <section className="mb-12 page-break-inside-avoid">
+            <section className="page-break-inside-avoid">
               <h2 className="text-2xl font-bold mb-6 text-foreground print:text-black border-b border-border pb-2">
                 Peer Feedback & Endorsements
               </h2>
