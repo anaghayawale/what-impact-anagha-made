@@ -56,36 +56,6 @@ export function AchievementClient({ achievement }: AchievementClientProps) {
         {/* Chart */}
         {achievement.chart && <ImpactChart chart={achievement.chart} />}
 
-        {/* Before/After Images */}
-        {achievement.beforeAfterImages && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-3">
-              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-                Before
-              </h3>
-              <div className="rounded-lg border border-border overflow-hidden shadow-sm bg-muted/30">
-                <img
-                  src={achievement.beforeAfterImages.before}
-                  alt="Before change"
-                  className="w-full h-auto object-cover opacity-90 hover:opacity-100 transition-opacity"
-                />
-              </div>
-            </div>
-            <div className="space-y-3">
-              <h3 className="text-sm font-semibold text-primary uppercase tracking-wider">
-                After
-              </h3>
-              <div className="rounded-lg border border-primary/20 overflow-hidden shadow-md ring-1 ring-primary/10 bg-card">
-                <img
-                  src={achievement.beforeAfterImages.after}
-                  alt="After change"
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        )}
-
         {/* Details Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Left: Description + Tickets + PRs */}
