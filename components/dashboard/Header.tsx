@@ -7,6 +7,8 @@ import { Sun, Moon, FileText } from 'lucide-react';
 import type { BragData } from '@/lib/data';
 import Link from 'next/link';
 
+import { motion } from 'framer-motion';
+
 interface HeaderProps {
   data: Pick<BragData, 'name' | 'role' | 'team' | 'years' | 'profileImage'>;
   selectedYear: string;
@@ -17,7 +19,12 @@ export function Header({ data, selectedYear, onYearChange }: HeaderProps) {
   const { theme, setTheme } = useTheme();
 
   return (
-    <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-50 no-print">
+    <motion.header
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-50 no-print"
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3 min-w-0">
           {data.profileImage ? (
@@ -45,6 +52,9 @@ export function Header({ data, selectedYear, onYearChange }: HeaderProps) {
           </div>
         </div>
         <div className="flex items-center gap-2 ml-4 flex-shrink-0">
+          <span className="hidden sm:inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary border border-primary/20 shrink-0 mr-2">
+            2025 - 2026 impact
+          </span>
           <Button
             variant="ghost"
             size="icon"
@@ -62,13 +72,11 @@ export function Header({ data, selectedYear, onYearChange }: HeaderProps) {
           >
             <Link href="/report">
               <FileText className="h-3.5 w-3.5" />
-              <span className="hidden sm:inline">
-                Generate Promotion Report
-              </span>
+              <span className="hidden sm:inline">Generate Impact Report</span>
             </Link>
           </Button>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 }

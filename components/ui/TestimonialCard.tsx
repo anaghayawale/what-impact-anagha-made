@@ -15,7 +15,7 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
     .slice(0, 2);
 
   return (
-    <Card className="border-border/60 hover:border-border transition-colors">
+    <Card className="h-full group overflow-hidden flex flex-col transition-all hover:shadow-md hover:border-primary/50 bg-gradient-to-br from-card to-muted/20">
       <CardContent className="pt-5 pb-5 px-5 space-y-4">
         <div className="relative">
           <span

@@ -78,7 +78,7 @@ export function StatCarousel({
     },
     {
       icon: '💬',
-      label: 'Tech Improvements Suggested',
+      label: 'Innovation Initiatives',
       value: metrics.techDiscussions,
       accent: 'var(--chart-3)',
     },
@@ -102,7 +102,10 @@ export function StatCarousel({
       <div className="overflow-hidden -mx-2 px-2 -my-2 py-2" ref={emblaRef}>
         <div className="flex -ml-3">
           {slides.map(({ icon, label, value, accent }) => (
-            <div key={label} className="flex-none pl-3 w-1/2 sm:w-1/4">
+            <div
+              key={label}
+              className="flex-[0_0_100%] sm:flex-[0_0_50%] md:flex-[0_0_33.33%] lg:flex-[0_0_25%] min-w-0 pl-3"
+            >
               <Card className="border-border/60 hover:border-border transition-colors h-full">
                 <CardContent className="pt-4 pb-4 px-4">
                   <div className="flex items-center gap-2 mb-2">
@@ -156,7 +159,7 @@ export function StatCarousel({
               key={index}
               className={`rounded-full transition-all ${
                 index === selectedIndex
-                  ? 'h-[10px] w-[10px] border-[1.5px] border-foreground bg-transparent'
+                  ? 'h-[10px] w-[10px] bg-primary'
                   : 'h-2 w-2 border border-muted-foreground/40 bg-transparent'
               }`}
               onClick={() => scrollTo(index)}

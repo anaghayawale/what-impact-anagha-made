@@ -8,7 +8,7 @@ interface BadgeCardProps {
 
 export function BadgeCard({ badge }: BadgeCardProps) {
   const inner = (
-    <Card className="group border-border/60 hover:border-border hover:scale-105 transition-all duration-200 cursor-default h-full">
+    <Card className="h-full group overflow-hidden flex flex-col hover:scale-105 transition-all duration-200 hover:shadow-md hover:border-primary/50 bg-gradient-to-br from-card to-muted/20 cursor-default">
       <CardContent className="pt-5 pb-5 px-5 flex flex-col items-center text-center gap-3">
         {/* Badge image or emoji fallback */}
         <div
