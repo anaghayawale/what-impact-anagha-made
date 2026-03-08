@@ -168,7 +168,7 @@ export const BRAG_DATA: BragData = {
       date: '2026-03',
       metric: 'Prevented erroneous third-party system integration triggers',
       description:
-        'Identified and resolved a production issue where irrelevant data sections were being rendered on supplier profiles across multiple market units and countries. The incorrect display was causing unintended downstream integration events in the ERP system. Conducted a cross-MU audit to validate field visibility rules and ensure consistent behavior across all regions.',
+        'Identified and resolved a production issue where irrelevant data sections were being rendered on supplier profiles across multiple market units and countries. The incorrect display was causing unintended downstream integration events in the SAP system. Conducted a cross-MU audit to validate field visibility rules and ensure consistent behavior across all regions.',
     },
     {
       id: '2',
@@ -232,7 +232,7 @@ export const BRAG_DATA: BragData = {
       date: '2025-12',
       metric: 'Extended SAP field mapping coverage to new regions',
       description:
-        'Implemented SAP integration field mappings for additional regional market units, covering supplier master data fields including name, address, search term, and bank account holder name. Ensured data from the supplier hub was correctly transformed and synced with the ERP system for the newly onboarded regions.',
+        'Implemented SAP integration field mappings for additional regional market units, covering supplier master data fields including name, address, search term, and bank account holder name. Ensured data from the supplier hub was correctly transformed and synced with the SAP system for the newly onboarded regions.',
     },
     {
       id: '7',
@@ -355,7 +355,7 @@ export const BRAG_DATA: BragData = {
       metric:
         'Covered 3 integration stories across tax, address, and frontend enablement',
       description:
-        'Implemented tax ID parsing, address validation rules, and enabled ERP integration actions for new countries in the frontend.',
+        'Implemented tax ID parsing, address validation rules, and enabled SAP integration actions for new countries in the frontend.',
     },
     {
       id: '18',
@@ -396,11 +396,13 @@ export const BRAG_DATA: BragData = {
   ],
   skills: [
     { name: 'AI Agents & Workflow Integration', level: 3.5, category: 'new' },
+    { name: 'Microsoft Agentic AI Architecture', level: 3.5, category: 'new' },
     { name: 'Amazon Web Services (AWS)', level: 3.5, category: 'new' },
     { name: 'AWS Compute', level: 3.5, category: 'new' },
     { name: 'AWS Storage Database', level: 3.5, category: 'new' },
-    { name: 'AWS Governance', level: 2, category: 'new' },
+    { name: 'AWS Governance', level: 3.5, category: 'new' },
     { name: 'AWS Security', level: 2, category: 'new' },
+    { name: 'GitHub', level: 3.5, category: 'new' },
     { name: 'Node.js', level: 3.5, category: 'improved' },
     { name: 'JavaScript', level: 3.5, category: 'improved' },
     {
@@ -408,8 +410,8 @@ export const BRAG_DATA: BragData = {
       level: 3.5,
       category: 'improved',
     },
-    { name: 'Python (Programming Language)', level: 2, category: 'improved' },
-    { name: 'ML', level: 1, category: 'improved' },
+    { name: 'Python (Programming Language)', level: 3, category: 'improved' },
+    { name: 'ML', level: 3, category: 'improved' },
     { name: 'Deep Learning', level: 1, category: 'improved' },
     { name: 'Microsoft Azure Iaas', level: 1, category: 'improved' },
     { name: 'Microsoft Azure Paas', level: 1, category: 'improved' },
