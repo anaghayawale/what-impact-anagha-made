@@ -395,9 +395,14 @@ export const BRAG_DATA: BragData = {
     },
   ],
   skills: [
-    { name: 'AI Agents & Workflow Integration', level: 3, category: 'new' },
-    { name: 'Node.js', level: 3, category: 'improved' },
-    { name: 'JavaScript', level: 3, category: 'improved' },
+    { name: 'AI Agents & Workflow Integration', level: 3.5, category: 'new' },
+    { name: 'Amazon Web Services (AWS)', level: 3.5, category: 'new' },
+    { name: 'AWS Compute', level: 3.5, category: 'new' },
+    { name: 'AWS Storage Database', level: 3.5, category: 'new' },
+    { name: 'AWS Governance', level: 2, category: 'new' },
+    { name: 'AWS Security', level: 2, category: 'new' },
+    { name: 'Node.js', level: 3.5, category: 'improved' },
+    { name: 'JavaScript', level: 3.5, category: 'improved' },
     {
       name: 'Multiplatform Front End Development Angular',
       level: 3.5,
@@ -414,11 +419,6 @@ export const BRAG_DATA: BragData = {
       category: 'improved',
     },
     { name: 'Microsoft Azure Data Services', level: 1, category: 'improved' },
-    { name: 'AWS Storage Database', level: 2, category: 'new' },
-    { name: 'AWS Governance', level: 2, category: 'new' },
-    { name: 'AWS Compute', level: 2, category: 'new' },
-    { name: 'AWS Security', level: 2, category: 'new' },
-    { name: 'Amazon Web Services (AWS)', level: 2, category: 'new' },
   ],
   testimonials: [
     {
@@ -587,7 +587,7 @@ export const BRAG_DATA: BragData = {
       status: 'in-progress',
       progress: 46,
       note: 'Backend Development with Node.js, Creating API with PostgresSQL and Express, Angular Fundamentals, Deployment Process',
-      icon: '🦀',
+      icon: '👩‍💻',
     },
   ],
   innovationFocus: [

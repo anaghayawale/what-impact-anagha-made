@@ -15,25 +15,6 @@ export function SkillsTab({ skills }: SkillsTabProps) {
 
   return (
     <div className="space-y-8 max-w-lg">
-      {improved.length > 0 && (
-        <section className="space-y-4">
-          <div className="flex items-center gap-2">
-            <span className="text-base">📈</span>
-            <h3 className="text-sm font-semibold text-foreground">
-              Improved Skills
-            </h3>
-            <span className="text-xs text-muted-foreground font-mono">
-              ({improved.length})
-            </span>
-          </div>
-          <div className="space-y-5">
-            {improved.map((skill) => (
-              <SkillBar key={skill.name} skill={skill} />
-            ))}
-          </div>
-        </section>
-      )}
-
       {newSkills.length > 0 && (
         <section className="space-y-4">
           <div className="flex items-center gap-2">
@@ -47,6 +28,25 @@ export function SkillsTab({ skills }: SkillsTabProps) {
           </div>
           <div className="space-y-5">
             {newSkills.map((skill) => (
+              <SkillBar key={skill.name} skill={skill} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {improved.length > 0 && (
+        <section className="space-y-4">
+          <div className="flex items-center gap-2">
+            <span className="text-base">📈</span>
+            <h3 className="text-sm font-semibold text-foreground">
+              Improved Skills
+            </h3>
+            <span className="text-xs text-muted-foreground font-mono">
+              ({improved.length})
+            </span>
+          </div>
+          <div className="space-y-5">
+            {improved.map((skill) => (
               <SkillBar key={skill.name} skill={skill} />
             ))}
           </div>
