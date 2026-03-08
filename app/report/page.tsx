@@ -5,9 +5,10 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PrintButton } from '@/components/ui/PrintButton';
+import { FadeIn } from '@/components/ui/FadeIn';
 
 export const metadata = {
-  title: 'Promotion Report | Brag Document Dashboard',
+  title: 'Impact Report',
   description: 'Comprehensive timeline of achievements and impact.',
 };
 
@@ -28,7 +29,7 @@ export default async function ReportPage() {
         </div>
 
         {/* Report Document */}
-        <div className="max-w-4xl mx-auto bg-card print:bg-transparent print:shadow-none shadow-sm border border-border print:border-none rounded-xl p-8 sm:p-12">
+        <FadeIn className="max-w-4xl mx-auto bg-card print:bg-transparent print:shadow-none shadow-sm border border-border print:border-none rounded-xl p-8 sm:p-12">
           {/* Header */}
           <header className="border-b border-border pb-8 mb-8 text-center sm:text-left">
             <h1 className="text-4xl font-bold tracking-tight mb-2 text-foreground print:text-black">
@@ -221,7 +222,7 @@ export default async function ReportPage() {
               </div>
             </section>
           )}
-        </div>
+        </FadeIn>
       </div>
     </ThemeProvider>
   );

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { motion } from 'framer-motion';
 import { DataProvider } from '@/context/DataContext';
 import type { BragData } from '@/lib/data';
 import { StatCarousel } from '@/components/dashboard/StatCarousel';
@@ -75,65 +76,71 @@ export function DashboardClient({ data }: DashboardClientProps) {
           onYearChange={setSelectedYear}
         />
         <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
-          <StatCarousel
-            metrics={data.metrics}
-            badgesCount={data.badges.length}
-            certCount={data.certifications.length}
-          />
-
-          <Tabs
-            value={activeTab}
-            onValueChange={setActiveTab}
-            className="space-y-6"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            <TabsList className="!h-auto bg-muted p-1.5 gap-1.5 flex flex-wrap justify-start rounded-xl mb-2 sm:mb-4">
-              {tabs.map((tab) => (
-                <TabsTrigger
-                  key={tab.id}
-                  value={tab.id}
-                  className="rounded-lg px-4 py-2 text-sm font-medium transition-all text-muted-foreground hover:text-foreground data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
-                >
-                  {tab.label}
-                </TabsTrigger>
-              ))}
-            </TabsList>
+            <StatCarousel
+              metrics={data.metrics}
+              badgesCount={data.badges.length}
+              certCount={data.certifications.length}
+            />
 
-            <TabsContent value="timeline" className="mt-0">
-              <TimelineTab achievements={filteredData.achievements} />
-            </TabsContent>
-            <TabsContent value="innovation-focus" className="mt-0">
-              <InnovationFocusTab
-                ideas={
-                  selectedYear === 'all'
-                    ? data.innovationFocus
-                    : filteredData.innovationFocus
-                }
-              />
-            </TabsContent>
-            <TabsContent value="skills" className="mt-0">
-              <SkillsTab skills={data.skills} />
-            </TabsContent>
-            {data.testimonials.length > 0 && (
-              <TabsContent value="testimonials" className="mt-0">
-                <TestimonialsTab testimonials={data.testimonials} />
+            <Tabs
+              value={activeTab}
+              onValueChange={setActiveTab}
+              className="space-y-6"
+            >
+              <TabsList className="!h-auto bg-muted p-1.5 gap-1.5 flex flex-wrap justify-start rounded-xl mb-2 sm:mb-4">
+                {tabs.map((tab) => (
+                  <TabsTrigger
+                    key={tab.id}
+                    value={tab.id}
+                    className="rounded-lg px-4 py-2 text-sm font-medium transition-all text-muted-foreground hover:text-foreground data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
+                  >
+                    {tab.label}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+
+              <TabsContent value="timeline" className="mt-0">
+                <TimelineTab achievements={filteredData.achievements} />
               </TabsContent>
-            )}
-            {data.badges.length > 0 && (
-              <TabsContent value="badges" className="mt-0">
-                <BadgesTab badges={data.badges} />
+              <TabsContent value="innovation-focus" className="mt-0">
+                <InnovationFocusTab
+                  ideas={
+                    selectedYear === 'all'
+                      ? data.innovationFocus
+                      : filteredData.innovationFocus
+                  }
+                />
               </TabsContent>
-            )}
-            {data.certifications.length > 0 && (
-              <TabsContent value="certifications" className="mt-0">
-                <CertificationsTab certifications={data.certifications} />
+              <TabsContent value="skills" className="mt-0">
+                <SkillsTab skills={data.skills} />
               </TabsContent>
-            )}
-            {data.misc.length > 0 && (
-              <TabsContent value="misc" className="mt-0">
-                <MiscTab misc={data.misc} />
-              </TabsContent>
-            )}
-          </Tabs>
+              {data.testimonials.length > 0 && (
+                <TabsContent value="testimonials" className="mt-0">
+                  <TestimonialsTab testimonials={data.testimonials} />
+                </TabsContent>
+              )}
+              {data.badges.length > 0 && (
+                <TabsContent value="badges" className="mt-0">
+                  <BadgesTab badges={data.badges} />
+                </TabsContent>
+              )}
+              {data.certifications.length > 0 && (
+                <TabsContent value="certifications" className="mt-0">
+                  <CertificationsTab certifications={data.certifications} />
+                </TabsContent>
+              )}
+              {data.misc.length > 0 && (
+                <TabsContent value="misc" className="mt-0">
+                  <MiscTab misc={data.misc} />
+                </TabsContent>
+              )}
+            </Tabs>
+          </motion.div>
         </main>
       </div>
     </DataProvider>

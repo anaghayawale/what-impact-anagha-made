@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import {
   Select,
@@ -97,16 +98,22 @@ export function TimelineTab({ achievements }: TimelineTabProps) {
               No achievements match the current filters.
             </p>
           )}
-          {filtered.map((achievement) => {
+          {filtered.map((achievement, index) => {
             const impactCfg = getImpactConfig(achievement.impact);
             const catColor = getCategoryColor(achievement.category);
             return (
-              <div key={achievement.id} className="relative sm:pl-10 group">
+              <motion.div
+                key={achievement.id}
+                className="relative sm:pl-10 group"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+              >
                 {/* Dot */}
                 <div className="absolute left-1.5 top-5 w-4 h-4 rounded-full bg-card border-2 border-primary hidden sm:block transition-colors duration-200 group-hover:bg-primary" />
 
                 <Link href={`/achievements/${achievement.id}`}>
-                  <Card className="border-border/60 group-hover:border-primary/50 group-hover:shadow-md transition-all duration-200 cursor-pointer">
+                  <Card className="group overflow-hidden flex flex-col group-hover:border-primary/50 group-hover:shadow-md transition-all duration-200 cursor-pointer bg-gradient-to-br from-card to-muted/20">
                     <CardContent className="pt-4 pb-4 px-5">
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0 space-y-2 flex-1">
@@ -141,7 +148,7 @@ export function TimelineTab({ achievements }: TimelineTabProps) {
                     </CardContent>
                   </Card>
                 </Link>
-              </div>
+              </motion.div>
             );
           })}
         </div>

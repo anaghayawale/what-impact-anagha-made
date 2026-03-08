@@ -156,7 +156,7 @@ export const BRAG_DATA: BragData = {
   metrics: {
     numberOfRelease: 5,
     highImpactWork: 8,
-    techDiscussions: 2,
+    techDiscussions: 4,
   },
   achievements: [
     {

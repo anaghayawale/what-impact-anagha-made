@@ -35,7 +35,7 @@ export function CertCard({ cert }: CertCardProps) {
   const config = STATUS_CONFIG[status];
 
   return (
-    <Card className="border-border/60 hover:border-border transition-colors">
+    <Card className="h-full group overflow-hidden flex flex-col transition-all hover:shadow-md hover:border-primary/50 bg-gradient-to-br from-card to-muted/20">
       <CardContent className="pt-5 pb-5 px-5 space-y-3">
         <div className="flex items-start justify-between gap-2">
           <div className="flex items-center gap-2.5">

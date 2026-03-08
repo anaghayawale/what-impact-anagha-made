@@ -29,6 +29,7 @@ import {
 } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 interface InnovationFocusTabProps {
   ideas: InnovationIdea[];
@@ -86,56 +87,63 @@ export function InnovationFocusTab({ ideas }: InnovationFocusTabProps) {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {ideas.map((idea) => {
+        {ideas.map((idea, index) => {
           return (
-            <Card
+            <motion.div
               key={idea.id}
-              onClick={() => setSelectedIdea(idea)}
-              className="group overflow-hidden flex flex-col transition-all hover:shadow-md hover:border-primary/50 cursor-pointer bg-gradient-to-br from-card to-muted/20"
+              className="h-full"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
             >
-              <CardHeader className="pb-4">
-                <div className="flex justify-between items-start mb-2 gap-4">
-                  <Badge
-                    variant="secondary"
-                    className={`font-medium ${getCategoryColor(idea.category)} border-0 rounded-md`}
-                  >
-                    {idea.category}
-                  </Badge>
-                  <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-background rounded-full px-2.5 py-1 border border-border shadow-sm">
-                    {getStatusIcon(idea.status)}
-                    {idea.status}
+              <Card
+                onClick={() => setSelectedIdea(idea)}
+                className="h-full group overflow-hidden flex flex-col transition-all hover:shadow-md hover:border-primary/50 cursor-pointer bg-gradient-to-br from-card to-muted/20"
+              >
+                <CardHeader className="pb-4">
+                  <div className="flex justify-between items-start mb-2 gap-4">
+                    <Badge
+                      variant="secondary"
+                      className={`font-medium ${getCategoryColor(idea.category)} border-0 rounded-md`}
+                    >
+                      {idea.category}
+                    </Badge>
+                    <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-background rounded-full px-2.5 py-1 border border-border shadow-sm">
+                      {getStatusIcon(idea.status)}
+                      {idea.status}
+                    </div>
                   </div>
-                </div>
-                <CardTitle className="text-lg leading-tight group-hover:text-primary transition-colors">
-                  {idea.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="flex-grow flex flex-col gap-4">
-                <CardDescription className="text-sm leading-relaxed line-clamp-3">
-                  {idea.description}
-                </CardDescription>
+                  <CardTitle className="text-lg leading-tight group-hover:text-primary transition-colors">
+                    {idea.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow flex flex-col gap-4">
+                  <CardDescription className="text-sm leading-relaxed line-clamp-3">
+                    {idea.description}
+                  </CardDescription>
 
-                <div className="mt-auto pt-4 flex flex-col gap-3">
-                  {idea.impact && (
-                    <div className="rounded-lg bg-emerald-500/10 px-3 py-2 text-sm border border-emerald-500/20">
-                      <span className="font-semibold text-emerald-600 dark:text-emerald-400 block mb-0.5 text-xs uppercase tracking-wider">
-                        Business Impact
-                      </span>
-                      <span className="text-foreground/90 leading-snug">
-                        {idea.impact}
-                      </span>
-                    </div>
-                  )}
+                  <div className="mt-auto pt-4 flex flex-col gap-3">
+                    {idea.impact && (
+                      <div className="rounded-lg bg-emerald-500/10 px-3 py-2 text-sm border border-emerald-500/20">
+                        <span className="font-semibold text-emerald-600 dark:text-emerald-400 block mb-0.5 text-xs uppercase tracking-wider">
+                          Business Impact
+                        </span>
+                        <span className="text-foreground/90 leading-snug">
+                          {idea.impact}
+                        </span>
+                      </div>
+                    )}
 
-                  {idea.date && (
-                    <div className="flex items-center gap-1.5 text-xs text-muted-foreground mt-1">
-                      <Calendar className="w-3.5 h-3.5" />
-                      <span>{idea.date}</span>
-                    </div>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
+                    {idea.date && (
+                      <div className="flex items-center gap-1.5 text-xs text-muted-foreground mt-1">
+                        <Calendar className="w-3.5 h-3.5" />
+                        <span>{idea.date}</span>
+                      </div>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
           );
         })}
       </div>
@@ -205,7 +213,12 @@ function StatChip({
   trend?: string;
 }) {
   return (
-    <div className="rounded-xl border border-border bg-card px-4 py-3 relative overflow-hidden group hover:border-primary/30 transition-colors">
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className="rounded-xl border border-border bg-card px-4 py-3 relative overflow-hidden group hover:border-primary/30 transition-colors"
+    >
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
       <p className="text-2xl font-bold font-sans tracking-tight text-foreground relative z-10 flex items-center gap-2">
         {value}
@@ -218,6 +231,6 @@ function StatChip({
       <p className="text-xs font-medium text-muted-foreground mt-1 relative z-10 uppercase tracking-wider">
         {label}
       </p>
-    </div>
+    </motion.div>
   );
 }
