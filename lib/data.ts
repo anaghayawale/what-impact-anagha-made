@@ -190,15 +190,6 @@ export const BRAG_DATA: BragData = {
       metric: 'Resolved known vulnerabilities and compatibility issues',
       description:
         'Upgraded key third-party packages related to email and notification services (nodemailer, SES client) to their latest stable versions. Ensured backward compatibility and ran regression tests to validate existing notification flows remained unaffected.',
-      testimonials: [
-        {
-          id: 'at1',
-          name: 'Sanjana Vaswani',
-          designation: 'Custom Software Engineering Specialist',
-          comment:
-            'This change done by other developer which did not work. You managed to resolve the issue near the SCA deadline is highly appreciated.',
-        },
-      ],
     },
     {
       id: '4',
