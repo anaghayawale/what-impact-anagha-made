@@ -72,19 +72,13 @@ export function StatCarousel({
     },
     {
       icon: '🔍',
-      label: 'PRs Reviewed',
-      value: metrics.prsReviewed,
-      accent: 'var(--chart-2)',
-    },
-    {
-      icon: '✅',
-      label: 'PRs Merged',
-      value: metrics.prsMerged,
+      label: 'High Impact Work',
+      value: metrics.highImpactWork,
       accent: 'var(--chart-2)',
     },
     {
       icon: '💬',
-      label: 'Tech Discussions',
+      label: 'Tech Improvements Suggested',
       value: metrics.techDiscussions,
       accent: 'var(--chart-3)',
     },

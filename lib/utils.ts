@@ -68,21 +68,33 @@ export function getImpactConfig(impact: ImpactLevel): {
   }
 }
 
-const CATEGORY_CHART_VARS = [
-  'var(--chart-1)',
-  'var(--chart-2)',
-  'var(--chart-3)',
-  'var(--chart-4)',
-  'var(--chart-5)',
+const CATEGORY_COLORS: Record<string, string> = {
+  'Bug Fix': '#e11d48', // Rose
+  'User Story': '#2563eb', // Blue
+  'Tech Story': '#7c3aed', // Violet
+  Tech: '#059669', // Emerald
+  Process: '#d97706', // Amber
+  'Business Logic': '#0d9488', // Teal
+};
+
+const CATEGORY_FALLBACK_COLORS = [
+  '#0284c7', // Sky
+  '#c026d3', // Fuchsia
+  '#65a30d', // Lime
+  '#eab308', // Yellow
+  '#9333ea', // Purple
 ];
 
 export function getCategoryColor(category: string): string {
+  if (CATEGORY_COLORS[category]) {
+    return CATEGORY_COLORS[category];
+  }
   let hash = 0;
   for (let i = 0; i < category.length; i++) {
     hash = category.charCodeAt(i) + ((hash << 5) - hash);
   }
-  const index = Math.abs(hash) % CATEGORY_CHART_VARS.length;
-  return CATEGORY_CHART_VARS[index];
+  const index = Math.abs(hash) % CATEGORY_FALLBACK_COLORS.length;
+  return CATEGORY_FALLBACK_COLORS[index];
 }
 
 export function getDocTypeIcon(type: SupportingDoc['type']): string {

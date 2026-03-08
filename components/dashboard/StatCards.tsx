@@ -11,9 +11,8 @@ const STAT_ITEMS: Array<{
   icon: string;
 }> = [
   { key: 'numberOfRelease', label: 'No. of Releases', icon: '🚀' },
-  { key: 'prsReviewed', label: 'PRs Reviewed', icon: '🔍' },
-  { key: 'prsMerged', label: 'PRs Merged', icon: '✅' },
-  { key: 'techDiscussions', label: 'Tech Discussions', icon: '💬' },
+  { key: 'highImpactWork', label: 'High Impact Work', icon: '🔍' },
+  { key: 'techDiscussions', label: 'Tech Improvements Suggested', icon: '💬' },
 ];
 
 export function StatCards({ metrics }: StatCardsProps) {

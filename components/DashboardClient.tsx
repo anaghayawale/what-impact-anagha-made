@@ -6,7 +6,7 @@ import type { BragData } from '@/lib/data';
 import { StatCarousel } from '@/components/dashboard/StatCarousel';
 import { Header } from '@/components/dashboard/Header';
 import { TimelineTab } from '@/components/tabs/TimelineTab';
-import { CodeActivityTab } from '@/components/tabs/CodeActivityTab';
+import { InnovationFocusTab } from '@/components/tabs/InnovationFocusTab';
 import { SkillsTab } from '@/components/tabs/SkillsTab';
 import { TestimonialsTab } from '@/components/tabs/TestimonialsTab';
 import { BadgesTab } from '@/components/tabs/BadgesTab';
@@ -30,15 +30,15 @@ export function DashboardClient({ data }: DashboardClientProps) {
       achievements: data.achievements.filter(
         (a) => a.date && a.date.startsWith(selectedYear),
       ),
-      codeActivity: data.codeActivity.filter((a) =>
-        a.date.startsWith(selectedYear),
+      innovationFocus: data.innovationFocus.filter((a) =>
+        a.date?.startsWith(selectedYear),
       ),
     };
   }, [data, selectedYear]);
 
   const tabs = [
     { id: 'timeline', label: 'Timeline', alwaysShow: true },
-    { id: 'code-activity', label: 'Code Activity', alwaysShow: true },
+    { id: 'innovation-focus', label: 'Innovation Focus', alwaysShow: true },
     { id: 'skills', label: 'Skills', alwaysShow: true },
     {
       id: 'testimonials',
@@ -101,14 +101,13 @@ export function DashboardClient({ data }: DashboardClientProps) {
             <TabsContent value="timeline" className="mt-0">
               <TimelineTab achievements={filteredData.achievements} />
             </TabsContent>
-            <TabsContent value="code-activity" className="mt-0">
-              <CodeActivityTab
-                activities={
+            <TabsContent value="innovation-focus" className="mt-0">
+              <InnovationFocusTab
+                ideas={
                   selectedYear === 'all'
-                    ? data.codeActivity.filter((a) => a.date.startsWith('2024'))
-                    : filteredData.codeActivity
+                    ? data.innovationFocus
+                    : filteredData.innovationFocus
                 }
-                year={selectedYear === 'all' ? '2024' : selectedYear}
               />
             </TabsContent>
             <TabsContent value="skills" className="mt-0">

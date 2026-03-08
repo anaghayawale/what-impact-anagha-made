@@ -11,10 +11,19 @@ export function TagPill({ label, color, className }: TagPillProps) {
     <span
       className={cn(
         'inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border transition-colors',
-        'bg-muted text-muted-foreground border-border',
+        'border-transparent', // Remove default border so custom color applies cleanly
+        !color && 'bg-muted text-muted-foreground border-border',
         className,
       )}
-      style={color ? { borderColor: color, color } : undefined}
+      style={
+        color
+          ? {
+              backgroundColor: `color-mix(in srgb, ${color} 15%, transparent)`,
+              color: color,
+              borderColor: `color-mix(in srgb, ${color} 30%, transparent)`,
+            }
+          : undefined
+      }
     >
       {label}
     </span>

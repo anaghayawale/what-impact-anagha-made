@@ -36,25 +36,44 @@ export function SkillBar({ skill }: SkillBarProps) {
         </span>
       </div>
       <div className="flex gap-1">
-        {[1, 2, 3, 4, 5].map((star) => (
-          <svg
-            key={star}
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill={filled && star <= skill.level ? 'currentColor' : 'none'}
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={`h-4 w-4 transition-colors duration-700 ${
-              filled && star <= skill.level
-                ? 'text-primary'
-                : 'text-muted-foreground/20'
-            }`}
-          >
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-          </svg>
-        ))}
+        <svg width="0" height="0" className="absolute">
+          <defs>
+            <linearGradient id="half-star" x1="0" x2="100%" y1="0" y2="0">
+              <stop offset="50%" stopColor="#a100ff" />
+              <stop offset="50%" stopColor="transparent" />
+            </linearGradient>
+          </defs>
+        </svg>
+        {[1, 2, 3, 4, 5].map((star) => {
+          const isFull = filled && star <= Math.floor(skill.level);
+          const isHalf =
+            filled &&
+            !isFull &&
+            star === Math.ceil(skill.level) &&
+            skill.level % 1 !== 0;
+
+          let fillValue = 'none';
+          if (isFull) fillValue = 'currentColor';
+          if (isHalf) fillValue = 'url(#half-star)';
+
+          return (
+            <svg
+              key={star}
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill={fillValue}
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className={`h-4 w-4 transition-colors duration-700 ${
+                isFull || isHalf ? 'text-[#a100ff]' : 'text-muted-foreground/20'
+              }`}
+            >
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            </svg>
+          );
+        })}
       </div>
     </div>
   );

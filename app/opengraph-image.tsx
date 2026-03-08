@@ -29,7 +29,7 @@ export default async function Image() {
         display: 'flex',
         height: '100%',
         width: '100%',
-        backgroundColor: '#f8fafc',
+        backgroundColor: '#000000', // Accenture Black
         flexDirection: 'column',
       }}
     >
@@ -51,13 +51,13 @@ export default async function Image() {
             width: 160,
             height: 160,
             borderRadius: 80,
-            backgroundColor: '#0f172a',
+            backgroundColor: '#a100ff', // Accenture Purple
             color: '#ffffff',
             fontSize: 70,
             fontWeight: 700,
             letterSpacing: '0.05em',
             marginBottom: '60px',
-            boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+            boxShadow: '0 10px 30px rgba(161, 0, 255, 0.3)', // Purple glow
           }}
         >
           {initials}
@@ -67,7 +67,7 @@ export default async function Image() {
             display: 'flex',
             fontSize: 80,
             fontWeight: 700,
-            color: '#0f172a',
+            color: '#ffffff', // White text for dark theme
             letterSpacing: '0.15em',
             textTransform: 'uppercase',
             marginBottom: '30px',
@@ -79,9 +79,11 @@ export default async function Image() {
           style={{
             display: 'flex',
             fontSize: 36,
-            color: '#475569',
+            color: '#a100ff', // Accenture Purple accent
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
+            textAlign: 'center',
+            padding: '0 40px',
           }}
         >
           {description}
@@ -92,21 +94,24 @@ export default async function Image() {
           display: 'flex',
           height: '140px',
           width: '100%',
-          backgroundColor: '#0f172a',
+          backgroundColor: '#111111', // Slightly lighter black for footer
+          borderTop: '2px solid #a100ff', // Purple accent border
           alignItems: 'center',
           justifyContent: 'center',
         }}
       >
-        <div
-          style={{
-            color: '#94a3b8',
-            fontSize: 24,
-            letterSpacing: '0.3em',
-            textTransform: 'uppercase',
-          }}
-        >
-          Advergame Technologies Private Limited
-        </div>
+        {data.organizationName && (
+          <div
+            style={{
+              color: '#ffffff', // White text
+              fontSize: 24,
+              letterSpacing: '0.3em',
+              textTransform: 'uppercase',
+            }}
+          >
+            {data.organizationName}
+          </div>
+        )}
       </div>
     </div>,
     {
